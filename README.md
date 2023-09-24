@@ -1,94 +1,99 @@
-<img src="./img/Free-GPT4-LOGO_(icon_by_vectorsmarket15).png" width="500" height="200" />
+# Installation
 
-[![Docker Image CI](https://github.com/aledipa/Free-GPT4-WEB-API/actions/workflows/docker-image.yml/badge.svg)](https://github.com/aledipa/Free-GPT4-WEB-API/actions/workflows/docker-image.yml)
-[![GPT4-API-PyApp](https://github.com/aledipa/Free-GPT4-WEB-API/actions/workflows/python-app.yml/badge.svg)](https://github.com/aledipa/Free-GPT4-WEB-API/actions/workflows/python-app.yml)
-
-# Free-GPT4-WEB-API
-
-FreeGPT4-WEB-API is a python server that allows you to have a self-hosted GPT-4 Unlimited and Free WEB API, via the latest Bing's AI.
-
-## Requirements
-
-- Python 3
-- Flask
-- g4f (from [here](https://github.com/xtekky/gpt4free)).
-## Manual Installation
-To install the required libraries, you can use the following command:
-
-`pip install -r requirements.txt`
-
-### Usage
-
-To run the server, use the following command:
-
-(Get response with sources)
-```shell
-python3 FreeGPT4_Server.py
+## 1) BardAPI Python
 ```
-(Get response without sources)
-```shell
-python3 FreeGPT4_Server.py --no-sources
+$ pip install bardapi
+```
+```
+$ pip install git+https://github.com/dsdanielpark/Bard-API.git
 ```
 
-If you want to use it with curl (credits to [@ayoubelmhamdi](https://github.com/ayoubelmhamdi)):
+```python
+import sys
+from bardapi import Bard
+from bardapi import BardCookies
 
-```shell
-fileTMP="$1"
-curl -s -F file=@"${fileTMP}" http://127.0.0.1:5500/
-```
-## Docker Installation
-<img src="./img/docker-logo.webp" width="400" height="100" />
+if len(sys.argv) != 2:
+    print("Usage: python main.py 'your_argument'")
+    sys.exit(1)
 
-It's possible to install the docker image of this API by running this command:
+argument = sys.argv[1]
 
-`docker container run -v /path/to/your/cookies.json:/cookies.json:ro -p YOUR_PORT:5500 d0ckmg/free-gpt4-web-api`
+cookie_dict = {
+    %here%
+}
 
-or alternatively, you can use a docker-compose file:
-
-**docker-compose.yml**
-
-```yaml
-version: "3.9"
-services:
-  api:
-    image: "d0ckmg/free-gpt4-web-api:latest"
-    ports:
-      - "YOUR_PORT:5500"
-    volumes:
-      - /path/to/your/cookies.json:/cookies.json:ro
+bard = BardCookies(cookie_dict=cookie_dict)
+print(bard.get_answer(argument)['content'])
 ```
 
-This will start the server and allow you to access the GPT-4 WEB API.
+The thing is, we will use a C# app to replace the `cookie_dict` value on the fly.
 
-Once the server is running, you can access the API by sending HTTP requests to the server's address. The data for the requests should be sent via hotlinking and the response will be returned as plain text.
+## 2) CockyGrabber
 
-For example, to generate text using the API, you can send a GET request with the `text` parameter set to the text you want to use as a prompt and the (optional) `style` parameter set to the style you want to use. The default style is "balanced" and is recommended since it is faster. The generated text will be returned in the response as plain text.
+→ [CockyGrabber](https://github.com/MoistCoder/CockyGrabber)
 
-To stop the server, you can press `CTRL+C` in the terminal where the server is running.
-(credits to [@git-malik](https://github.com/git-malik))
+```csharp
+ChromeGrabber grabber = new ChromeGrabber(); // Create Grabber
+var cookies = grabber.GetCookies(); // Collect all Cookies with GetCookies()
 
-## Siri Integration
-<img src="./img/GPTMode_Logo.png" width="400" height="133" />
+List<string> GoogleCookies = new List<string>();
+string cookieChunk = "";
+// Print the Hostname, Name, and Value of every cookie:
+foreach (var cookie in cookies)
+{
+    if (cookie.Name.Contains("__Secure-1P")){ // sometimes you get rateLimited and need to wait 12h or switch account
+        GoogleCookies.Add($"\"{cookie.Name}\" : \"{cookie.DecryptedValue}\",");
+        cookieChunk = cookieChunk + Environment.NewLine + $"\"{cookie.Name}\" : \"{cookie.DecryptedValue}\",";
+    }
+}
 
-You can implement the power of GPT4 in Siri by using the [GPTMode Apple Shortcut](https://www.icloud.com/shortcuts/bfeed30555854958bd6165fa4d82e21b).
-Then you can use it just by saying "GPT Mode" to Siri and then ask your question when prompted to do so.
+cookieChunk = cookieChunk.Remove(cookieChunk.Length - 1);
 
-## Configuration
+string pythonSrc = @"
+import sys
+from bardapi import Bard
+from bardapi import BardCookies
 
-The server can be configured by editing the `FreeGPT4_Server.py` file. You can change the server's port, host, and other settings.
+if len(sys.argv) != 2:
+print(""Usage: python main.py 'your_argument'"")
+sys.exit(1)
 
-## Libraries
+argument = sys.argv[1]
 
-FreeGPT4-WEB-API uses the Flask and GPT4Free libraries. Flask is a micro web framework for Python that allows you to easily create web applications. GPT4Free is a library that provides an interface to the Bing's GPT-4, credits to [@xtekky's GPT4Free](https://github.com/xtekky/gpt4free).
+cookie_dict = {
+%here%
+}
 
-## Notes
+bard = BardCookies(cookie_dict=cookie_dict)
+print(bard.get_answer(argument)['content'])
+";
 
-- The demo server may be overloaded and not always work as expected. (at the moment should be fine)
-- Any kind of contribution to the repository is welcome.
+string pythonSrcNew = pythonSrc.Replace("%here%", cookieChunk);
+File.WriteAllText(PythonScriptPath, pythonSrcNew);
 
-## Todo
-- [x] Fix Repository
-- [x] Update Demo Server
-- [x] Update Docker Image
-- [ ] Add A.I. provider choice
-- [ ] Add GUI
+// Create a process to run the Python script
+Process process = new Process();
+process.StartInfo.FileName = "python"; // Use the "python" command
+process.StartInfo.Arguments = $"{PythonScriptPath} \"{arguments}\"";
+process.StartInfo.UseShellExecute = false;
+process.StartInfo.RedirectStandardOutput = true;
+process.StartInfo.RedirectStandardError = true;
+process.StartInfo.CreateNoWindow = true;
+
+// Start the process
+process.Start();
+
+// Read the output and error streams
+string output = await process.StandardOutput.ReadToEndAsync();
+string error = await process.StandardError.ReadToEndAsync();
+
+// Wait for the process to exit
+process.WaitForExit();
+
+// Close the process
+process.Close();// Create a process to run the Python script
+```
+
+And now you have :
+A fully working c# app that takes an argument, pass it to the python script, return the data and reads it fine.
