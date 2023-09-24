@@ -1,0 +1,13 @@
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\BardSharp.CLI.exe.config
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\BardSharp.CLI.exe
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\BardSharp.CLI.pdb
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\obj\Debug\BardSharp.CLI.csproj.AssemblyReference.cache
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\obj\Debug\BardSharp.CLI.csproj.CoreCompileInputs.cache
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\obj\Debug\BardSharp.CLI.exe
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\obj\Debug\BardSharp.CLI.pdb
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\CockyGrabber.dll
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\System.Data.SQLite.dll
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\CockyGrabber.pdb
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\CockyGrabber.dll.config
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\bin\Debug\System.Data.SQLite.xml
+C:\Users\Shadow\Documents\GitHub\Free-GPT4-WEB-API\BardSharp.CLI\obj\Debug\BardSharp.CLI.csproj.CopyComplete

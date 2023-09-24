@@ -1,0 +1,9 @@
+Introduction : Montrez pourquoi la question de la notion '{notion}' est philosophiquement pertinente. Commencez par un exemple de la vie quotidienne, ensuite, expliquez comment ces exemples illustrent la complexité de la question '{question}' et pourquoi cette question est philosophiquement intéressante. Finalement, introduisez la question centrale du cours.
+¤
+Partie 1 : La thèse, ou autrement dit la Doxa. Rédigez 3 arguments sur la perspective commune ou la doxa sur la notion '{notion}'. C'est-à-dire, ce que la plupart des gens pensent de la notion '{notion}' dans leur vie quotidienne. Il est important de ne pas parler de {auteur} ou de ses théories dans cette partie !
+¤
+Partie 2 : L'antithèse, ou autrement dit la Para-doxa. La deuxième partie explore l'antithèse de la doxa en 3 arguments. C'est dans cette partie que vous utilisez et mobilisez {auteur}.
+¤
+Résumé : Résumez brièvement les points clés des deux parties précédentes. Mettez en évidence les différences entre la doxa et la Para-doxa sur la notion de '{notion}', ainsi que les questions philosophiques soulevées par ces perspectives divergentes.
+¤
+Plan détaillé : synthétique de la partie 3 sous forme de liste : Envisagez d'explorer une alternative à la doxa et à la Para-doxa. Présentez une perspective personnelle ou une autre école de pensée philosophique qui offre une manière différente de comprendre le problème. Discutez des implications pratiques de ces différentes perspectives pour la vie quotidienne et la prise de décision. Assurez-vous de structurer cette section de manière logique, en suivant un plan détaillé.
