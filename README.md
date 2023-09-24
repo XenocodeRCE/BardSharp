@@ -1,3 +1,5 @@
+![bard](https://github.com/XenocodeRCE/BardSharp/assets/4918142/8bb829ee-1cda-46fc-aae7-b70946f47c08)
+
 # Installation
 
 ## 1) Requirements 
